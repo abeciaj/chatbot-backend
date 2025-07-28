@@ -1,0 +1,79 @@
+## Build results
+bin/
+obj/
+out/
+Generated_Code/
+
+## User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Visual Studio Code
+.vscode/
+
+## Visual Studio
+.vs/
+*.dbmdl
+*.VC.db
+
+## Rider
+.idea/
+*.sln.iml
+
+## ASP.NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Entity Framework
+Migrations/
+
+## DotCover
+*.dotCover
+
+## Logs
+*.log
+
+## Temporary files
+*.tmp
+*.temp
+*.bak
+*.ncb
+*.cache
+*.orig
+
+## OS-specific
+.DS_Store
+Thumbs.db
+
+## Others
+*.vspscc
+*.vssscc
+*.pidb
+_ReSharper*/
+_TeamCity*/
+
+## NuGet
+*.nupkg
+packages/
+*.snupkg
+
+# Ignore global.json lock
+global.json.lock
+
+# Ignore coverage results
+coverage*.json
+coverage*.xml
+coverage*.info
+lcov-report/
+
+# Ignore test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Ignore publish output
+publish/
