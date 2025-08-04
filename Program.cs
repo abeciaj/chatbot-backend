@@ -11,58 +11,18 @@ var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(x =>
+    {
+        x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+        x.JsonSerializerOptions.WriteIndented = true; // Optional
+    });
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddSignalR();
 
-
-//builder.Services.AddDbContext<UserDbContext>(options =>
-//    options.UseNpgsql(
-//        builder.Configuration.GetConnectionString("DefaultConnection"),
-//        npgsqlOptionsAction: npgsqlOptions =>
-//        {
-//            npgsqlOptions.MapEnum<Role>("Role");
-//        }));
-
-//NpgsqlConnection.GlobalTypeMapper.MapEnum<Role>();
-//NpgsqlConnection.GlobalTypeMapper.MapEnum<Role>("role");
-
 builder.Services.AddDbContext<UserDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
-        o => o.MapEnum<Role>("role")));
-
-// Program.cs
-//var dataSourceBuilder = new NpgsqlDataSourceBuilder(
-//    builder.Configuration.GetConnectionString("DefaultConnection")
-//);
-//dataSourceBuilder.MapEnum<Role>();
-//var dataSource = dataSourceBuilder.Build();
-//builder.Services.AddDbContext<UserDbContext>(options => options.UseNpgsql(dataSource));
-
-//builder.Services.AddCors(options =>
-//{
-//    options.AddDefaultPolicy(policy =>
-//    {
-//        policy.AllowAnyHeader()
-//              .AllowAnyMethod()
-//              .AllowCredentials()
-//              .SetIsOriginAllowed(origin => true); // allow all origins
-//    });
-//});
-
-
-var dataSourceBuilder = new NpgsqlDataSourceBuilder(
-    builder.Configuration.GetConnectionString("DefaultConnection")!
-);
-
-dataSourceBuilder.MapEnum<Role>("role");
-
-var dataSource = dataSourceBuilder.Build();
-
-builder.Services.AddDbContext<UserDbContext>(options =>
-    options.UseNpgsql(dataSource)
-);
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
 

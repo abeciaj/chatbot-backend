@@ -11,9 +11,6 @@ namespace ChatSupport.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasPostgresEnum<Role>("role");
-
-
             modelBuilder.Entity<Room>()
                 .HasKey(r => r.room_id);
 

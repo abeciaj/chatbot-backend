@@ -47,7 +47,6 @@ namespace ChatSupport.Controllers
                 return NotFound();
 
             room.name = updatedroom.name;
-            room.password_hash = updatedroom.password_hash;
             room.created_on = updatedroom.created_on;
 
             await _context.SaveChangesAsync();

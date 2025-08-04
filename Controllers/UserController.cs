@@ -48,7 +48,7 @@ namespace ChatSupport.Controllers
 
             user.name = updatedUser.name;
             user.email = updatedUser.email;
-            user.password_hash = updatedUser.password_hash;
+            user.password = updatedUser.password;
             user.created_on = updatedUser.created_on;
 
             await _context.SaveChangesAsync();

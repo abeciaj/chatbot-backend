@@ -16,7 +16,6 @@ namespace ChatSupport.Controllers
             _context = context;
         }
 
-        // GET: api/Member
         [HttpGet]
         public async Task<ActionResult<List<Member>>> GetMembers()
         {
@@ -27,7 +26,6 @@ namespace ChatSupport.Controllers
             return Ok(members);
         }
 
-        // GET: api/Member/201
         [HttpGet("{member_id}")]
         public async Task<ActionResult<Member>> GetMemberById(long member_id)
         {
@@ -42,7 +40,6 @@ namespace ChatSupport.Controllers
             return Ok(member);
         }
 
-        // GET: api/Member/room/101
         [HttpGet("room/{room_id}")]
         public async Task<ActionResult<List<Member>>> GetMembersByRoom(long room_id)
         {
@@ -57,7 +54,6 @@ namespace ChatSupport.Controllers
             return Ok(members);
         }
 
-        // POST: api/Member
         [HttpPost]
         public async Task<ActionResult<Member>> AddMember(Member newMember)
         {
@@ -70,7 +66,6 @@ namespace ChatSupport.Controllers
             return CreatedAtAction(nameof(GetMemberById), new { member_id = newMember.member_id }, newMember);
         }
 
-        // PUT: api/Member/201
         [HttpPut("{member_id}")]
         public async Task<IActionResult> UpdateMember(long member_id, Member updatedMember)
         {
@@ -88,7 +83,6 @@ namespace ChatSupport.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Member/201
         [HttpDelete("{member_id}")]
         public async Task<IActionResult> DeleteMember(long member_id)
         {
@@ -99,6 +93,18 @@ namespace ChatSupport.Controllers
             _context.members.Remove(member);
             await _context.SaveChangesAsync();
             return NoContent();
+        }
+
+        [HttpGet("user/{user_id}")]
+        public async Task<ActionResult<List<Room>>> GetRoomsByUser(long user_id)
+        {
+            var rooms = await _context.members
+                .Include(m => m.Room)
+                .Where(m => m.user_id == user_id)
+                .Select(m => m.Room)
+                .ToListAsync();
+
+            return Ok(rooms);
         }
     }
 }

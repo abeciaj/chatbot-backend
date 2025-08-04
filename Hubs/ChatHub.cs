@@ -4,9 +4,14 @@ namespace ChatSupport.Hubs
 {
     public class ChatHub : Hub
     {
-        public async Task SendMessage(string user, string message)
+        public async Task JoinRoom(string roomId)
         {
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
+            await Groups.AddToGroupAsync(Context.ConnectionId, roomId);
+        }
+
+        public async Task SendMessageToRoom(string roomId, string user, string message)
+        {
+            await Clients.Group(roomId).SendAsync("ReceiveMessage", user, message);
         }
     }
 }
