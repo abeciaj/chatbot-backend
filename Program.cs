@@ -41,11 +41,14 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapScalarApiReference();
-    app.MapOpenApi();
-}
+// if (app.Environment.IsDevelopment())
+// {
+    
+    
+// }
+app.MapOpenApi();
+app.MapScalarApiReference();
+
 
 app.UseCors(MyAllowSpecificOrigins);
 app.MapHub<ChatHub>("/chatHub");

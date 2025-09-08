@@ -1,0 +1,45 @@
+# Ignore build output
+bin/
+obj/
+out/
+
+# Ignore user-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore IDE / tooling settings
+.vs/
+.idea/
+.vscode/
+
+# Ignore macOS / Linux / Windows system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Ignore logs
+*.log
+logs/
+
+# Ignore temp files
+*.tmp
+*.swp
+*.bak
+
+# Docker-specific
+docker-compose.override.yml
+.dockerignore
+.git/
+.gitignore
+
+# Optional: test results, coverage, packages
+TestResults/
+*.coverage
+*.coveragexml
+*.ncrunchsolution
+.nuget/
+packages/
